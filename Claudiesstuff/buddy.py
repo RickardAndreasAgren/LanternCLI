@@ -491,22 +491,19 @@ def run_animation(config: PetConfig) -> None:
     frames_in_action = 0
     current_action = Action.IDLE
     current_frames = _ACTION_FRAMES[Action.IDLE]
-    frame_index = 0
 
     while time.monotonic() < deadline:
         # Advance or pick a new action when the current one completes.
         if frames_in_action >= _ACTION_HOLD_FRAMES:
             current_action = choose_action(config.mood)
             current_frames = _ACTION_FRAMES[current_action]
-            frame_index = 0
             frames_in_action = 0
 
-        frame_art = current_frames[frame_index % len(current_frames)]
+        frame_art = current_frames[frames_in_action % len(current_frames)]
         status = _ACTION_STATUS[current_action]
 
         render(config.name, frame_art, status)
 
-        frame_index += 1
         frames_in_action += 1
         time.sleep(_FRAME_INTERVAL_SECONDS)
 

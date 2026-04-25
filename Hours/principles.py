@@ -34,3 +34,11 @@
 # Knock
 # Open - Enable a threshold
 # Search - Find the hidden
+
+# Option: Mood + Time = Principle
+
+class PrincipleInterface:
+
+    @classmethod
+    def destinations() -> list[str]:
+        return []

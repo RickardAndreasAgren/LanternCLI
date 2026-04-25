@@ -31,7 +31,11 @@
 #
 #
 
-# House
+# Yard
+#
+#
+
+# Porch
 #
 #
 
@@ -40,10 +44,6 @@
 #
 
 # Hallway
-#
-#
-
-# Porch
 #
 #
 

@@ -1,4 +1,6 @@
 
+from enum import Enum, unique
+
 # Her mood
 #
 #
@@ -6,6 +8,7 @@
 # Principle of the mood
 # Option: Mood + Time = Principle
 #
+
 
 @unique
 class Mood(Enum):
