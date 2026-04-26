@@ -3,7 +3,7 @@ from enum import Enum, unique
 import random
 import time
 
-from Light.above import Vector
+from Light.above import TimeOfDay, Vector
 
 # What the wind brought
 #
@@ -33,20 +33,28 @@ class Weather():
         self.clouds = None
         self.season = None
         self.seed = None
-        self.vector = None
+        self.vector = Vector.NAV
         if season is not None:
             self.season = season
         if vector is not None:
             self.vector = vector
-        
-    @classmethod
-    def from_season(cls):
+
+    def from_seasonandorvector(cls, *, space: Season = None, vector: Vector = None):
         random.seed("strengthofabove", 2)
-        season = Weather.getseason()
+        if cls.season is None:
+            cls.season = Weather.getseason()
+        season = cls.season
+        print(season)
+        if cls.vector is Vector.NAV:
+            when = TimeOfDay.from_hour(10)
+            cls.vector = Vector.from_shadows(TimeOfDay.shadows(when))
+            
+        vector = cls.vector
+        print(vector)
         weatherweights = Weather.weatherweights(season)
-        vectorweights = Weather.vectorweights(season)
+        vectorweights = Weather.vectorweights(vector)
         index = 0
-        weights = list(str)
+        weights = []
         for w in weatherweights:
             if w == 0:
                 vectorweights[index] = 0
@@ -75,7 +83,7 @@ class Weather():
      0 CLEAR, 1 POCKETS, 2 CLOUDY, 3 TRICKLE, 4 RAIN, 5 SNOW
     """
     @classmethod
-    def weatherweights(season: Season) -> list:
+    def weatherweights(cls, season: Season) -> list:
         if season == Season.SPRING:
             return [3, 2, 1, 0, 2, 2]
         if season == Season.SUMMER:
@@ -88,7 +96,7 @@ class Weather():
      0 CLEAR, 1 POCKETS, 2 CLOUDY, 3 TRICKLE, 4 RAIN, 5 SNOW
     """
     @classmethod
-    def vectorweights(wind: Vector) -> list:
+    def vectorweights(cls, wind: Vector) -> list:
         if wind == Vector.STILL:
             return [3, 2, 1, 2, 0, 2]
         if wind == Vector.BREEZE:

@@ -86,6 +86,7 @@ class Vector(Enum):
     """Weather strength
     """
 
+    NAV = "notavector"
     STILL = "calm"
     BREEZE = "breezing"
     GUSTS = "gusting"
