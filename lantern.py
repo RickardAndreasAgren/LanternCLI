@@ -42,4 +42,5 @@ def main(argv: Sequence[str] | None = None) -> None:
     if args.hour is not None:
         time_of_day = TimeOfDay.from_hour(args.hour)
     else:
-        time_of_day = TimeOfDay.from_hour(datetime.now().hour)
+        hour = int(datetime.datetime.now().hour)
+        time_of_day = TimeOfDay.from_hour(hour)
