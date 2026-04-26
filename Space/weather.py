@@ -29,7 +29,7 @@ class Clouds(Enum):
 
 
 class Weather():
-    def __init__(self, season: Season = None, vector: Vector = None):
+    def __init__(self, *, season: Season = None, vector: Vector = None):
         self.clouds = None
         self.season = None
         self.seed = None
@@ -61,7 +61,7 @@ class Weather():
                 index += 1
 
     @classmethod
-    def getseason() -> Season:
+    def getseason(cls) -> Season:
         month = time.localtime().tm_mon
         if month < 6 and month > 2:
             return Season.SPRING
