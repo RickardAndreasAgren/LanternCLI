@@ -2,6 +2,11 @@
 # Run with options
 #
 # TODO adapt
+import argparse
+
+from Claudiesstuff.buddy import Mood
+
+
 def _build_parser() -> argparse.ArgumentParser:
     """Construct the argument parser for Lantern.
 

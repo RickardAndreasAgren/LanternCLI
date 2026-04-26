@@ -10,6 +10,7 @@ from Light.above import Vector
 # Clear Pockets Cloudy Trickle Rain Snow
 
 
+@unique
 class Season(Enum):
     WINTER = "winter"
     SPRING = "spring"
@@ -18,7 +19,7 @@ class Season(Enum):
 
 
 @unique
-class Weather(Enum):
+class Clouds(Enum):
     CLEAR = "clear"
     POCKETS = "pockets"
     CLOUDY = "cloudy"
@@ -26,14 +27,38 @@ class Weather(Enum):
     RAIN = "rain"
     SNOW = "snow"
 
+
+class Weather():
+    def __init__(self, season: Season = None, vector: Vector = None):
+        self.clouds = None
+        self.season = None
+        self.seed = None
+        self.vector = None
+        if season is not None:
+            self.season = season
+        if vector is not None:
+            self.vector = vector
+        
     @classmethod
-    def from_vector(cls, wind: Vector):
+    def from_season(cls):
         random.seed("strengthofabove", 2)
-        seeded = random.randint(1, 6)
         season = Weather.getseason()
         weatherweights = Weather.weatherweights(season)
         vectorweights = Weather.vectorweights(season)
-        
+        index = 0
+        weights = list(str)
+        for w in weatherweights:
+            if w == 0:
+                vectorweights[index] = 0
+            weights.append(weatherweights[index] + vectorweights[index])
+            index += 1
+
+        seeded = random.randint(0, 19)
+        index = 0
+        while seeded > 0:
+            seeded -= weights[0]
+            if seeded > 0:
+                index += 1
 
     @classmethod
     def getseason() -> Season:
@@ -65,12 +90,12 @@ class Weather(Enum):
     @classmethod
     def vectorweights(wind: Vector) -> list:
         if wind == Vector.STILL:
-            return [3, 2, 1, 0, 2, 2]
+            return [3, 2, 1, 2, 0, 2]
         if wind == Vector.BREEZE:
-            return [4, 1, 1, 2, 2, 0]
+            return [1, 3, 1, 2, 2, 1]
         if wind == Vector.GUSTS:
-            return [1, 1, 2, 2, 3, 1]
+            return [1, 1, 2, 1, 2, 3]
         if wind == Vector.WINDY:
-            return [1, 1, 2, 2, 3, 1]
+            return [1, 0, 1, 1, 4, 3]
         if wind == Vector.STORMY:
-            return [1, 1, 2, 2, 3, 1]
+            return [0, 0, 1, 1, 5, 4]

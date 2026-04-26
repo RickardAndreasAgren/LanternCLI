@@ -4,6 +4,17 @@
 #
 
 
+import datetime
+import random
+import argparse
+from typing import Sequence
+
+from Claudiesstuff.buddy import Mood
+from Light.above import TimeOfDay, Vector
+from Space.weather import Season, Weather
+from Tools.parser import _build_parser
+
+
 def main(argv: Sequence[str] | None = None) -> None:
     """Entry point for Lantern.
 
@@ -14,6 +25,10 @@ def main(argv: Sequence[str] | None = None) -> None:
     """
     parser = _build_parser()
     args = parser.parse_args(argv)
+    
+    testsimple = Weather()
+    testvector = Weather(None, Vector.BREEZE)
+    testseason = Weather(None, Season.SPRING)
 
     # Determine mood
     if args.mood:
@@ -28,10 +43,3 @@ def main(argv: Sequence[str] | None = None) -> None:
         time_of_day = TimeOfDay.from_hour(args.hour)
     else:
         time_of_day = TimeOfDay.from_hour(datetime.now().hour)
-
-    config = PoemConfig(
-        mood=mood,
-        time_of_day=time_of_day,
-        line_count=args.lines,
-        seed=args.seed,
-    )
