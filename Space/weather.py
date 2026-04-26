@@ -39,7 +39,8 @@ class Weather():
         if vector is not None:
             self.vector = vector
 
-    def from_seasonandorvector(cls, *, space: Season = None, vector: Vector = None):
+    def from_seasonandorvector(cls, *, space: Season = None,
+                               vector: Vector = None):
         random.seed("strengthofabove", 2)
         if cls.season is None:
             cls.season = Weather.getseason()
