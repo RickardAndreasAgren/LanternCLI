@@ -1,0 +1,15 @@
+
+
+===Weather===
+1. Take time; get daytime
+2. Take daytime; get shadows
+3. Take shadows; get vector
+4. Take vector + take season; get clouds
+--- season + vector + clouds = Weather
+
+===Principle===
+a. Take time; get Mood; get Principle
+b. Take input; get Principle
+
+===Location===
+1.

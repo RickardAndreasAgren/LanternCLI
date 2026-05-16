@@ -26,6 +26,10 @@ class Clouds(Enum):
     TRICKLE = "trickle"
     RAIN = "rain"
     SNOW = "snow"
+    
+    def perindex(index:int) -> Enum:
+        return list(Clouds)[index]
+        
 
 
 class Weather():
@@ -41,13 +45,14 @@ class Weather():
 
     def from_seasonandorvector(cls, *, space: Season = None,
                                vector: Vector = None):
-        random.seed("strengthofabove", 2)
+        cls.seed = random.Random()
+        cls.seed.seed("strengthfromabove", 2)
         if cls.season is None:
             cls.season = Weather.getseason()
         season = cls.season
         print(season)
         if cls.vector is Vector.NAV:
-            when = TimeOfDay.from_hour(10)
+            when = TimeOfDay.now()
             cls.vector = Vector.from_shadows(TimeOfDay.shadows(when))
             
         vector = cls.vector
@@ -57,17 +62,23 @@ class Weather():
         index = 0
         weights = []
         for w in weatherweights:
+            if vectorweights[index] == 0:
+                weatherweights[index] = 0
             if w == 0:
                 vectorweights[index] = 0
             weights.append(weatherweights[index] + vectorweights[index])
             index += 1
 
-        seeded = random.randint(0, 19)
+        seeded = cls.seed.randint(0, 19)
+        print(seeded)
         index = 0
         while seeded > 0:
-            seeded -= weights[0]
-            if seeded > 0:
+            seeded -= weights[index]
+            if seeded > 0 and index < len(weights) - 1:
                 index += 1
+            else:
+                cls.clouds = Clouds.perindex(index)
+        print(cls.clouds)
 
     @classmethod
     def getseason(cls) -> Season:
@@ -103,10 +114,8 @@ class Weather():
         if wind == Vector.BREEZE:
             return [1, 3, 1, 2, 2, 1]
         if wind == Vector.GUSTS:
-            return [1, 1, 2, 1, 2, 3]
+            return [1, 2, 2, 1, 2, 2]
         if wind == Vector.WINDY:
             return [1, 0, 1, 1, 4, 3]
         if wind == Vector.STORMY:
-            return [0, 0, 1, 1, 5, 4]
-
-# TODO Need to handle clouds too?
+            return [0, 1, 1, 0, 5, 3]

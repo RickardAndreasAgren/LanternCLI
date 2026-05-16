@@ -95,8 +95,9 @@ class Vector(Enum):
 
     @classmethod
     def from_shadows(cls, darkness: Shadow):
-        random.seed("shadowsofthewind", 2)
-        seeded = random.randint(1, 5)
+        roller = random.Random()
+        roller.seed("shadowsofthewind", 2)
+        seeded = roller.randint(1, 5)
         if darkness == Shadow.FULL:
             if seeded > 3:
                 return Vector.STORMY

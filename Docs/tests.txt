@@ -1,0 +1,4 @@
+
+from Space.weather import Weather
+test = Weather()
+test.from_seasonandorvector()

@@ -18,3 +18,23 @@
 # Beyond
 # A surprise
 #
+
+from Light.above import TimeOfDay
+
+# common interface for all the spaces
+class SpaceInterface:
+
+    @classmethod
+    def validtimeofday() -> list[TimeOfDay]:
+        return []
+      
+class SpaceDestination(SpaceInterface):
+  pass
+
+class SpaceNearby(SpaceInterface):
+  pass
+
+class SpaceInside(SpaceInterface):
+  pass
+
+
