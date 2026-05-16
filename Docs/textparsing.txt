@@ -1,0 +1,7 @@
+# Wisdom serves as source for all possibilities
+# Words and their properties
+# Expressions preconcieved
+#
+# The thread is built from filtering the words
+# through the current lantern state.
+# From the thread, sentences will be shaped.

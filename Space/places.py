@@ -3,53 +3,13 @@
 #
 #
 
-# River
-#
-#
-
-# Pond
-#
-#
-
-# Shore
-#
-#
-
-# Beach
-#
-#
-
-# Hill
-#
+# Garden
+# Where things can be planted
 #
 
 # Woods
 #
 # Explore?
-
-# Garden
-#
-#
-
-# Yard
-#
-#
-
-# Porch
-#
-#
-
-# Kitchen
-#
-#
-
-# Hallway
-#
-#
-
-# Hearth
-#
-#
 
 # Edge
 # Where things can be added

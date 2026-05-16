@@ -108,3 +108,5 @@ class Weather():
             return [1, 0, 1, 1, 4, 3]
         if wind == Vector.STORMY:
             return [0, 0, 1, 1, 5, 4]
+
+# TODO Need to handle clouds too?
