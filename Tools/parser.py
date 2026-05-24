@@ -24,7 +24,7 @@ def _build_parser() -> argparse.ArgumentParser:
         type=str,
         default=None,
         choices=[m.value for m in Mood],
-        help="emotional weather of the poem (default: random)",
+        help="current disposition of the lantern carrier (default: random)",
     )
     parser.add_argument(
         "--hour",
@@ -42,6 +42,6 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--verbose",
         action="store_true",
-        help="show poem metadata (mood, time, arc, quality)",
+        help="describe events in detail",
     )
     return parser

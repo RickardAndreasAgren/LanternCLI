@@ -5,11 +5,6 @@ from enum import Enum, unique
 #
 #
 
-# Principle of the mood
-# Option: Mood + Time = Principle
-#
-
-
 @unique
 class Mood(Enum):
     """The emotional weather of a poem.
