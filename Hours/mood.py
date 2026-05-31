@@ -17,4 +17,11 @@ class Mood(Enum):
     TENDER = "tender"
     QUIET = "quiet"
     ARRIVING = "arriving"
-    BLUE = "blue"
+    RECEIVING = "receiving"
+
+    def perindex(index:int) -> Enum:
+        return list(Mood)[index]
+    
+    def hasindex(self) -> int:
+        moodlist = list(Mood)
+        return moodlist.index(self)
