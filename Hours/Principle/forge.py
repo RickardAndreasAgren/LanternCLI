@@ -3,8 +3,7 @@
 # Renew - End something to create something
 
 from Hours.hour import Hour
-
-from ..principles import PrincipleInterface
+from ..principletype import PrincipleInterface
 
 class Forge(PrincipleInterface):
     def __init__(self):

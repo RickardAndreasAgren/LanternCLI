@@ -75,6 +75,10 @@ class TimeOfDay(Enum):
         if TimeOfDay == cls.DAY:
             return Shadow.HIDDEN
 
+    def hasindex(self) -> int:
+        timelist = list(TimeOfDay)
+        return timelist.index(self)
+        
     @classmethod
     def now(cls):
         hour = time.localtime().tm_hour

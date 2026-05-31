@@ -1,6 +1,8 @@
 
 from enum import Enum
 
+from Hours.principletype import PrincipleInterface
+
 class Hour(Enum):
     HEART = "heart" #0
     GRAIL = "grail" #1
@@ -31,3 +33,7 @@ class Hour(Enum):
     def hasindex(self) -> int:
         hourlist = list(Hour)
         return hourlist.index(self)
+    
+    def getprinciple(self) -> PrincipleInterface:
+        index = self.hasindex()
+        

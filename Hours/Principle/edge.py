@@ -3,8 +3,7 @@
 # Win - Finding victory after battle
 
 from Hours.hour import Hour
-
-from ..principles import PrincipleInterface
+from ..principletype import PrincipleInterface
 
 class Edge(PrincipleInterface):
     def __init__(self):

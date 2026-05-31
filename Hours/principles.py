@@ -1,9 +1,19 @@
 
 from enum import Enum, unique
 
+from Hours.Principle.edge import Edge
+from Hours.Principle.forge import Forge
+from Hours.Principle.grail import Grail
+from Hours.Principle.heart import Heart
+from Hours.Principle.knock import Knock
+from Hours.Principle.lantern import Lantern
+from Hours.Principle.moth import Moth
+from Hours.Principle.winter import Winter
 from Hours.hour import Hour
 from Hours.mood import Mood
+from Hours.principletype import PrincipleInterface
 from Light.above import TimeOfDay
+from Stories.journey import Journey
 
 # Her intent
 #
@@ -19,7 +29,7 @@ from Light.above import TimeOfDay
 
 # Edge
 # Struggle - Meeting resistance
-# Contradiction - Understanding a thought collision
+# Contradiction - Uncovering a thought collision
 
 # Forge
 # Transform - Change shape and purpose
@@ -43,15 +53,20 @@ from Light.above import TimeOfDay
 
 # Option: Mood + Time = Principle
 
-
-class PrincipleInterface:
-
-    @classmethod
-    def destinations() -> list[str]:
-        return []
+def possibilities() -> list[PrincipleInterface]:
+    return [
+        Heart(),
+        Grail(),
+        Edge(),
+        Forge(),
+        Knock(),
+        Lantern(),
+        Winter(),
+        Moth()
+    ]
 
 class Seek:
-    def __init__(self, *, when: TimeOfDay, hour:Hour = None, mood:Mood = None):
+    def __init__(self, *, when:TimeOfDay, hour:Hour = None, mood:Mood = None):
         self.when = when
         self.hour = None
         self.mood = None
@@ -61,30 +76,39 @@ class Seek:
         if self.hour is None and mood is not None:
             self.mood = mood
     
-    def checkmood(self) -> bool:
-        if self.mood is None:
-            return False
-        return True
-    
-    def checkhour(self) -> bool:
+    def ensurehour(self) -> Hour:
         if self.hour is None:
-            return False
-        return True
-    
-    def ensurehour(self):
-        if self.checkhour() is False:
-            if self.checkmood() is False:
+            if self.mood is None:
                 self.hourfromwhen()
             else:
                 self.hourfrommood()
+        return self.hour
                 
     def hourfromwhen(self):
-        if self.hour is None:
-            indextime = self.when.now()
-            # when = TimeOfDay
-            # 
-        
+        indextime = self.when.now()
+        shadow = TimeOfDay.shadows(indextime)
+        self.mood = Mood.perindex(shadow.value)
+        self.hourfrommood()
     
     def hourfrommood(self):
         indexmood = Mood.perindex(self.mood)
+        indextime = self.when.hasindex()
+        isum = indexmood + indextime
+        hourindex = isum % 8
+        self.hour = Hour.perindex(hourindex)
         
+    def gethour(self, journey:Journey):
+        self.ensurehour()
+        tapped = journey.tapped()
+        if self.hour in tapped:
+            options = self.hour.getnear()
+            if options[0] not in tapped:
+                self.hour = options[0]
+            elif options[1] not in tapped:
+                self.hour = options[1]
+            else:
+                currentindex = self.hour.hasindex()
+                hourindex = (currentindex + 2) % 8
+                self.hour = Hour.perindex(hourindex)
+        
+        return self.hour

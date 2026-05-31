@@ -1,3 +1,3 @@
 # Edge
 # Struggle - Meeting resistance
-# Contradiction - Understanding a thought collision
+# Contradiction - Uncovering a thought collision

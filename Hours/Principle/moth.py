@@ -4,8 +4,7 @@
 
 
 from Hours.hour import Hour
-
-from ..principles import PrincipleInterface
+from ..principletype import PrincipleInterface
 
 class Moth(PrincipleInterface):
     def __init__(self):

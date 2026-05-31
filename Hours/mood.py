@@ -2,8 +2,6 @@
 from enum import Enum, unique
 
 # Her mood
-#
-#
 
 @unique
 class Mood(Enum):
@@ -14,10 +12,10 @@ class Mood(Enum):
     """
 
     LUMINOUS = "luminous"
+    RECEIVING = "receiving"
+    ARRIVING = "arriving"
     TENDER = "tender"
     QUIET = "quiet"
-    ARRIVING = "arriving"
-    RECEIVING = "receiving"
 
     def perindex(index:int) -> Enum:
         return list(Mood)[index]
