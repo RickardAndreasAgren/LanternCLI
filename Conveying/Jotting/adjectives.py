@@ -1,4 +1,15 @@
 
+
+
+from typing import Final, List
+
+from Conveying.wisdom import Jot, Ordered
+
+
+t=Ordered.ADJECTIVES
+
+Adjectives: Final[List[Jot]] = List[Jot](
+)
 adjectives=(
   "quiet",
   "blue",

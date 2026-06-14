@@ -54,11 +54,14 @@ class WisdomInterface:
     def destinations(self) -> List[str]:
         return ["INTERFACE"]
         
-
+#
+# create Contemplate
+# using principle, set up glossaries
+# using active location, set up glossary
+# using weather and shadows, set up glossary
+#
+#
 class Contemplate:
-    
-    
-    
     def __init__(self, hour: PrincipleInterface):
       self.principle = None
 

@@ -1,6 +1,18 @@
 
 
 
+
+from typing import Final, List
+
+from Conveying.wisdom import Jot, Ordered
+
+
+t=Ordered.SOMETIME
+
+Sometime: Final[List[Jot]] = List[Jot](
+)
+
+
 verbs_infinitive=(
     "arrive",
     "settle",

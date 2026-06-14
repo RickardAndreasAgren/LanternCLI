@@ -1,5 +1,15 @@
 
 
+from typing import Final, List
+
+from Conveying.wisdom import Jot, Ordered
+
+
+t=Ordered.NOW
+
+Now: Final[List[Jot]] = List[Jot](
+)
+
 
 verbs_present=(
     "arrives",

@@ -1,3 +1,14 @@
+
+from typing import Final, List
+
+from Conveying.wisdom import Jot, Ordered
+
+
+t=Ordered.NOUN
+
+Nouns: Final[List[Jot]] = List[Jot](
+)
+
 nouns=(
         "ocean",
         "door",
