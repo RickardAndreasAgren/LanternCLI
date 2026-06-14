@@ -15,42 +15,6 @@ from Hours.principletype import PrincipleInterface
 from Light.above import TimeOfDay
 from Stories.journey import Journey
 
-# Her intent
-#
-#
-
-# Heart
-# Preserve - Ensure something endures
-# Rest - Gather strength and continue
-
-# Grail
-# Hunger - A craving, material or otherwise
-# Indulge - Enjoying a passion
-
-# Edge
-# Struggle - Meeting resistance
-# Contradiction - Uncovering a thought collision
-
-# Forge
-# Transform - Change shape and purpose
-# Renew - End something to create something
-
-# Knock
-# Open - Enable a threshold
-# Search - Find the hidden
-
-# Lantern
-# Illuminate - Make something under the light above the house visible
-# Discover - Unmask the unknown
-
-# Winter
-# Complete - Finish what is ending
-# Awaken - Revive that which is not quite dead
-
-# Moth
-# Yearn - Long for something to come
-# Unravel - Expose the unexpected
-
 # Option: Mood + Time = Principle
 
 def possibilities() -> list[PrincipleInterface]:

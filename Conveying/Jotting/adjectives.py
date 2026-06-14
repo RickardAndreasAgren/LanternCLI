@@ -1,0 +1,23 @@
+
+adjectives=(
+  "quiet",
+  "blue",
+  "gentle",
+  "small",
+  "tender",
+  "still",
+  "soft",
+  "luminous",
+  "warm",
+  "hushed",
+  "open",
+  "steady",
+  "deep",
+  "pale",
+  "calm",
+  "simple",
+  "amber",
+  "whole",
+  "near",
+  "slow",
+)

@@ -1,7 +1,19 @@
 
-from enum import Enum
+from enum import UNIQUE, Enum, Flag, auto, verify
 
 from Hours.principletype import PrincipleInterface
+
+@verify(UNIQUE)
+class HourOptions(Flag):
+    HEART = auto()
+    GRAIL = auto()
+    EDGE = auto()
+    FORGE = auto()
+    KNOCK = auto()
+    LANTERN = auto()
+    WINTER = auto()
+    MOTH = auto()
+
 
 class Hour(Enum):
     HEART = "heart" #0
