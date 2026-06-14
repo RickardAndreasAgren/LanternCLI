@@ -1,8 +1,9 @@
 
 from Hours.mood import Mood
+from Hours.principles import AsPrinciple
 from Light.above import TimeOfDay
 from Space.weather import Weather
-from Hours.principles import Hour, Seek
+from Hours.seeker import Hour, Seek
 
 def testweather() -> bool:
   test = Weather()
@@ -21,6 +22,14 @@ def testhour() -> bool:
   print(test3)
   test4 = ht3.getwithnear()
   print(test4)
+  print("-.-")
+  optionstest3 = ht3.optionsnear()
+  print(optionstest3)
+  optionstest4 = ht3.optionswithnear()
+  print(optionstest4)
+  print("-.-")
+  asprinciple = AsPrinciple(ht3)
+  print(asprinciple)
   return True
 
 def testmood() -> bool:

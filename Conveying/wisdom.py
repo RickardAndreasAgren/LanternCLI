@@ -4,8 +4,10 @@
 from enum import Enum, Flag, unique
 from typing import List
 
-from Hours.hour import HourOptions
+from Hours.hour import Hour, HourOptions
 from Hours.principletype import PrincipleInterface
+from Space.places import SpaceInterface
+from Space.weather import Weather
 
 @unique
 class Ordered(Enum):
@@ -53,19 +55,37 @@ class Glossary:
 class WisdomInterface:
     def destinations(self) -> List[str]:
         return ["INTERFACE"]
-        
-#
-# create Contemplate
-# using principle, set up glossaries
-# using active location, set up glossary
-# using weather and shadows, set up glossary
-#
-#
-class Contemplate:
-    def __init__(self, hour: PrincipleInterface):
-      self.principle = None
 
+
+class Contemplate:
+    def __init__(self, principle: Hour, where: SpaceInterface, above: Weather):
+      self.principle = principle
+      self.options = principle.optionsbynear()
+      self.where = where
+      self.above = above
+    
+    nouns = Glossary(Ordered.NOUN)  
+    abstractions = Glossary(Ordered.ABSTRACTION)
+    adjectives = Glossary(Ordered.ADJECTIVE)
+    donow = Glossary(Ordered.NOW)
+    dosometime = Glossary(Ordered.SOMETIME)
+    preposition = Glossary(Ordered.PREPOSITION)
+    inplace = Glossary(Ordered.PLACES)
+    natural = Glossary(Ordered.NATURAL)
+    
+    def collapse(self):
+        self.byprinciples()
+        self.byspace()
+        self.byabove()
+        
+    def byprinciples(self):
+        pass
+        
+    def byspace(self):
+        pass
+    
+    def byabove(self):
+        pass
+      
     def consider() -> str:
         return ''
-    
-    

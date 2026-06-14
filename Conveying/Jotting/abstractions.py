@@ -17,7 +17,7 @@ Abstractions: Final[List[Jot]] = List[Jot](
     Jot("becoming", t, HourOptions.FORGE),
     Jot("arriving", t, HourOptions.FORGE),
     
-    Jot("", t, HourOptions.FORGE|HourOptions.GRAIL),
+    Jot("gratification", t, HourOptions.FORGE|HourOptions.GRAIL),
     
     Jot("indulgence", t, HourOptions.GRAIL),
     Jot("yearning", t, HourOptions.GRAIL),

@@ -1,8 +1,6 @@
 
 from enum import unique, Enum, Flag, auto
 
-from Hours.principletype import PrincipleInterface
-
 @unique
 class HourOptions(Flag):
     HEART = auto()
@@ -13,7 +11,6 @@ class HourOptions(Flag):
     LANTERN = auto()
     WINTER = auto()
     MOTH = auto()
-
 
 class Hour(Enum):
     HEART = "heart" #0
@@ -36,16 +33,32 @@ class Hour(Enum):
         if negative == -1:
             negative = 7
         return [Hour.perindex(negative),Hour.perindex(plus)]
+
+    def optionsnear(self) -> HourOptions:
+        nearhours = self.getnear()
+        flags = None
+        for hour in nearhours:
+            if flags == None:
+                flags = HourOptions[hour.name]
+                continue
+            flags = flags|HourOptions[hour.name]
+        return flags
     
     def getwithnear(self) -> list[Enum]:
         near = self.getnear()
         near.insert(1, self)
         return near
+    
+    def optionswithnear(self) -> HourOptions:
+        withnearhours = self.getwithnear()
+        flags = None
+        for hour in withnearhours:
+            if flags == None:
+                flags = HourOptions[hour.name]
+                continue
+            flags = flags|HourOptions[hour.name]
+        return flags
         
     def hasindex(self) -> int:
         hourlist = list(Hour)
         return hourlist.index(self)
-    
-    def getprinciple(self) -> PrincipleInterface:
-        index = self.hasindex()
-        
