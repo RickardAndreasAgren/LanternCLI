@@ -5,7 +5,7 @@ from enum import Enum, Flag, unique
 from typing import List
 
 from Hours.hour import HourOptions
-from Hours.principles import PrincipleInterface
+from Hours.principletype import PrincipleInterface
 
 @unique
 class Ordered(Enum):

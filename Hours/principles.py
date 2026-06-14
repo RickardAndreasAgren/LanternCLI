@@ -12,7 +12,7 @@ from Hours.Principle.winter import Winter
 from Hours.hour import Hour
 from Hours.mood import Mood
 from Hours.principletype import PrincipleInterface
-from Light.above import TimeOfDay
+from Light.above import Shadow, TimeOfDay
 from Stories.journey import Journey
 
 # Option: Mood + Time = Principle
@@ -50,13 +50,13 @@ class Seek:
                 
     def hourfromwhen(self):
         indextime = self.when.now()
-        shadow = TimeOfDay.shadows(indextime)
+        shadow = Shadow.fromtime(indextime)
         self.mood = Mood.perindex(shadow.value)
         self.hourfrommood()
     
     def hourfrommood(self):
-        indexmood = Mood.perindex(self.mood)
-        indextime = self.when.hasindex()
+        indexmood = 1 + self.mood.hasindex()
+        indextime = 1 + self.when.hasindex()
         isum = indexmood + indextime
         hourindex = isum % 8
         self.hour = Hour.perindex(hourindex)

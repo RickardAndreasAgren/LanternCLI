@@ -7,15 +7,6 @@ import random
 # The length of the shadows
 # The strength of air
 
-
-class Shadow(Enum):
-    HIDDEN = 0
-    SHORT = 1
-    REACHING = 2
-    TOWERING = 3
-    FULL = 4
-
-
 @unique
 class TimeOfDay(Enum):
     """The hour's character.
@@ -59,22 +50,6 @@ class TimeOfDay(Enum):
             return cls.EVENING
         return cls.NIGHT  # 23, 0, 1
 
-    @classmethod
-    def shadows(cls, TimeOfDay):
-        """
-            Reach of darkness
-        """
-        if TimeOfDay == cls.NIGHT:
-            return Shadow.FULL
-        if TimeOfDay == cls.TENDER_HOURS or TimeOfDay == cls.EVENING:
-            return Shadow.TOWERING
-        if TimeOfDay == cls.DAWN or TimeOfDay == cls.DAWN:
-            return Shadow.REACHING
-        if TimeOfDay == cls.MORNING or TimeOfDay == cls.AFTERNOON:
-            return Shadow.SHORT
-        if TimeOfDay == cls.DAY:
-            return Shadow.HIDDEN
-
     def hasindex(self) -> int:
         timelist = list(TimeOfDay)
         return timelist.index(self)
@@ -84,6 +59,28 @@ class TimeOfDay(Enum):
         hour = time.localtime().tm_hour
         return TimeOfDay.from_hour(hour)
 
+class Shadow(Enum):
+    HIDDEN = 0
+    SHORT = 1
+    REACHING = 2
+    TOWERING = 3
+    FULL = 4
+
+    @classmethod
+    def fromtime(cls, time:TimeOfDay):
+        """
+            Reach of darkness
+        """
+        if time == TimeOfDay.NIGHT:
+            return Shadow.FULL
+        if time == TimeOfDay.TENDER_HOURS or time == TimeOfDay.EVENING:
+            return Shadow.TOWERING
+        if time == TimeOfDay.DAWN or time == TimeOfDay.DUSK:
+            return Shadow.REACHING
+        if time == TimeOfDay.MORNING or time == TimeOfDay.AFTERNOON:
+            return Shadow.SHORT
+        if time == TimeOfDay.DAY:
+            return Shadow.HIDDEN
 
 @unique
 class Vector(Enum):

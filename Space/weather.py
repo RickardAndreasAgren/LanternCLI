@@ -3,7 +3,7 @@ from enum import Enum, unique
 import random
 import time
 
-from Light.above import TimeOfDay, Vector
+from Light.above import Shadow, TimeOfDay, Vector
 
 # What the wind brought
 #
@@ -51,14 +51,16 @@ class Weather():
             cls.season = Weather.getseason()
         season = cls.season
         print(season)
-        if cls.vector is Vector.NAV:
+        print(cls.vector)
+        cls.vector = vector
+        if cls.vector is Vector.NAV or cls.vector is None:
             when = TimeOfDay.now()
-            cls.vector = Vector.from_shadows(TimeOfDay.shadows(when))
-            
-        vector = cls.vector
-        print(vector)
+            shadows = Shadow.fromtime(when)
+            cls.vector = Vector.from_shadows(shadows)
+        
+        print(cls.vector)
         weatherweights = Weather.weatherweights(season)
-        vectorweights = Weather.vectorweights(vector)
+        vectorweights = Weather.vectorweights(cls.vector)
         index = 0
         weights = []
         for w in weatherweights:

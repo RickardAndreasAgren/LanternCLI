@@ -1,9 +1,9 @@
 
-from enum import UNIQUE, Enum, Flag, auto, verify
+from enum import unique, Enum, Flag, auto
 
 from Hours.principletype import PrincipleInterface
 
-@verify(UNIQUE)
+@unique
 class HourOptions(Flag):
     HEART = auto()
     GRAIL = auto()
